@@ -11,13 +11,25 @@ class Data:
         data = requests.get(url).json()
         clear_data = data['forecast']['forecastday']
         path = "E:\Weather Boarcast [Python]\CSV"
+        paths = []
 
-        # Create data Frames & CSV 
         for i in range(day):
             day = clear_data[i]['date']
-            pd.DataFrame(clear_data[i]['hour']).to_csv(f'{path}/Hour_day_{day}.csv')
+            # Add "Time" column from unclean time column "time"
+            df = pd.DataFrame(clear_data[i]['hour'])
+            time = df['time']
+            Time = [str(t.split(' ')[1]) for t in time]
+            df['Time'] = Time
+            # Create csv files
+            df.to_csv(f'{path}/Hour_day_{day}.csv')
             pd.DataFrame(clear_data[i]['day'],index=[0]).to_csv(f'{path}/Day_day_{day}.csv')
             pd.DataFrame(clear_data[i]['astro'],index=[0]).to_csv(f'{path}/Astro_day_{day}.csv')
+            # append paths in paths
+            paths.append(f'{path}/Hour_day_{day}.csv')
+            paths.append(f'{path}/Day_day_{day}.csv')
+            paths.append(f'{path}/Astro_day_{day}.csv')
+        
+        return paths
 
     def Current_Status(self,place):
         url = f'http://api.weatherapi.com/v1/current.json?key={self.key}&q={place}'
