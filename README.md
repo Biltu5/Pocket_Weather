@@ -3,8 +3,8 @@ Now you can know about current & next 3 days weather in your own PC with a graph
 It is a simple tkinter base python project.
 
 # Dependencies
-pip install requests
-pip install pandas
-pip install matplotlib
-pip install seaborn
-pip install pillow
+1. pip install requests 
+2. pip install pandas
+3. pip install matplotlib
+4. pip install seaborn
+5. pip install pillow
