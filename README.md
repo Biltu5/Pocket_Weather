@@ -8,3 +8,6 @@ It is a simple tkinter base python project.
 3. pip install matplotlib
 4. pip install seaborn
 5. pip install pillow
+
+# Overview
+<img src = "Images/Screenshot.png" >
